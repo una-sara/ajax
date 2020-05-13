@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function msg1(){
+				//失去焦点时，做非空验证，结果显示在span中
+				//1.获取input的value
+				var val=uname.value;
+				//2.验证value是否为空
+				if(val==""){
+					//3.把结果放入span
+					msg.innerHTML="用户名不能为空";
+				}else{
+					msg.innerHTML="输入正确";
+				}
+			}
+			function msg2(){
+				//获取焦点时，在span中提示用户名6~12位
+				msg.innerHTML="用户名6~12位";
+			}
+		</script>
+	</head>
+	<body>
+		<input onblur="msg1()" onfocus="msg2()" type="text" id="uname">
+		<span id="msg"></span>
+	</body>
+</html>
