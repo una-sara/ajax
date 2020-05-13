@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function show(){
+				var users=[{uid:001,uname:"张三",upwd:123456},{uid:002,uname:"李四",upwd:123456}];
+				var html="";/*11:10~11:20休息*/
+				for(var i=0;i<users.length;i++){
+					html+=`
+						<tr>
+							<td>${users[i].uid}</td>
+							<td>${users[i].uname}</td>
+							<td>${users[i].upwd}</td>
+						</tr>
+					`;
+				}
+				content.innerHTML=html;
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div>
+			<table border="1px">
+				<tr>
+					<th>用户id</th>
+					<th>用户名称</th>
+					<th>用户密码</th>
+				</tr>
+				<tbody id="content"></tbody>
+			</table>
+		</div>
+		<button onclick="show()">动态添加数据</button>
+	</body>
+</html>
