@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function show(){
+				var html="";
+				for(var i=1;i<=100;i++){
+					html+=`
+						<tr>
+							<td>${i}</td>
+						</tr>
+					`;
+				}
+				content.innerHTML=html;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="d1">
+			<table border="1px">
+				<tr>
+					<th>用户id</th>
+				</tr>
+				<tbody id="content"></tbody>
+			</table>
+		</div>
+		<button onclick="show()">点点我试试</button>
+	</body>
+</html>
