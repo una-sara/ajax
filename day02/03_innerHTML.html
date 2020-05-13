@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			//点击按钮之后，在div中动态的添加一个2行两列，带边框的table，td内容里盛放
+			//m1,m2,m3,m4的值
+			function show(){
+				var m1=111;
+				var m2=222;
+				var m3=333;
+				var m4=444;
+				//模板字符串
+				d1.innerHTML=`
+					<table border="1px">
+						<tr>
+							<td>${m1}</td>
+							<td>${m2}</td>
+						</tr>
+						<tr>
+							<td>${m3}</td>
+							<td>${m4}</td>
+						</tr>
+					</table>
+				`;
+//				d1.innerHTML="<table border='1px'><tr><td>"+m1+"</td><td>"+m2+"</td></tr><tr><td>"+m3+"</td><td>"+m4+"</td></tr></table>";
+			}
+		</script>
+	</head>
+	<body>
+		<div id="d1"></div>
+		<button onclick="show()">点我试试</button>
+	</body>
+</html>
