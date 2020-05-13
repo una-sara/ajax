@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function getMsg(){
+				//把input的value值放入h4.innerHTML
+				h.innerHTML=msg.value;
+			}
+		</script>
+	</head>
+	<body>
+		<!-- 把input中值，在h4中显示 -->
+		<input type="text" id="msg">
+		<h4 id="h"></h4>
+		<button onclick="getMsg()">点我</button>
+	</body>
+</html>
