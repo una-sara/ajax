@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function show_uname(){
+				msg1.innerHTML="用户名6~12位";
+			}
+			function check_uname(){
+				var val=uname.value;
+				if(val==""){
+					msg1.innerHTML="用户名不能为空";
+				}else{
+					msg1.innerHTML="通过";
+				}
+			}
+			function check_cpwd(){
+				var p1=upwd.value;
+				var p2=cpwd.value;
+				if(p1==p2){
+					msg3.innerHTML="两次输入一致";
+				}else{
+					msg3.innerHTML="两次输入不一致";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<input onblur="check_uname()" onfocus="show_uname()" type="text" id="uname">
+			<span id="msg1"></span>
+		</div>
+		<div>
+			<input type="text" id="upwd">
+			<span id="msg2"></span>
+		</div>
+		<div>
+			<input onblur="check_cpwd()" type="text" id="cpwd">
+			<span id="msg3"></span>
+		</div>
+	</body>
+</html>
