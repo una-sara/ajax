@@ -2,7 +2,7 @@
 
 ### git add . //添加所有文件
 ### git commit -m '第一次提交' //注释说明
-### git remote add origin git@github.com:una-sara/Angular-ex.git
+### git remote add origin git@github.com:una-sara/ajax.git
 ### git push -u origin master //提交到你的仓库
 ### git --help //帮助命令
 ### git pull origin master //将远程仓库里面的项目拉下来
