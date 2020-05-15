@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function	login(){
+				//获取页面上用户的用户名和密码
+				var $uname=uname.value;
+				var $upwd=upwd.value;
+				//使用ajax访问服务器，并接受请求
+				//1.创建xhr异步对象
+				var xhr=new XMLHttpRequest();
+				//4.绑定监听，接受响应
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var result=xhr.responseText;
+						alert(result);
+					}
+				}
+				//2.创建请求，打开连接
+//				xhr.open("get","/demo/get_login?uname="+$uname+"&upwd="+$upwd,true);
+				//    /login/:uname&:upwd"
+				xhr.open("get","/demo/login/"+$uname+"&"+$upwd,true);
+				//3.发送请求
+				xhr.send();
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<input type="text" id="uname">
+		</div>
+		<div>
+			<input type="text" id="upwd">
+		</div>
+		<button onclick="login()">登陆</button>
+	</body>
+</html>
