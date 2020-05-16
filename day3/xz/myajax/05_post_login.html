@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function login(){
+				//获取用户输入的数据
+				var $uname=uname.value;
+				var $upwd=upwd.value;
+				//ajax操作post
+				//1.获取xhr异步对象
+				var xhr=new XMLHttpRequest();
+				//4.绑定监听
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var result=xhr.responseText;
+						alert(result);
+					}
+				}
+				//2.打开连接
+				xhr.open("post","/demo/post_login",true);
+				//创建请求主体，把数据放到请求主体中
+				var formdata="uname="+$uname+"&upwd="+$upwd;
+				//由于要传递整个请求主体
+				//而请求主体中有特殊字符，必须修改请求头
+				xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+				//3.发送请求
+				xhr.send(formdata);
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="uname"><br>
+		<input type="text" id="upwd"><br>
+		<button onclick="login()">登陆</button>
+	</body>
+</html>
