@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function queryuser(){
+				//获取地址栏中，传递过来的uid
+				//BOM----使用js操作浏览器对象
+				var urlParams=new URLSearchParams(location.search);
+				var $uid=urlParams.get("uid");
+				uid.value=$uid;
+				//1.获取xhr异步对象
+				var xhr=new XMLHttpRequest();
+				//4.绑定监听，获取响应
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var result=xhr.responseText;
+						if(result==0){
+							alert("查询失败");
+							return;
+						}
+						//json解析
+						//这里添加下标是为了直接获得数组中的js对象
+						var user=JSON.parse(result)[0];
+						//把数据放入各个文本框
+						uname.value=user.uname;
+						upwd.value=user.upwd;
+						email.value=user.email;
+						phone.value=user.phone;
+						user_name.value=user.user_name;
+						//gender.value=user.gender;
+						if(user.gender=="1"){
+							m.checked=true;
+						}else if(user.gender=="0"){
+							f.checked=true;
+						}else{
+							un.checked=true;
+						}
+
+					}
+				}
+				//2.打开连接，创建请求
+				xhr.open("get","/pro/v1/queryuser/"+$uid,true);
+				//3.发送请求
+				xhr.send();
+			}
+			function updateUser(){
+			//1.收集整理数据
+			var $uid=uid.value;
+			var $uname=uname.value;
+			var $upwd=upwd.value;
+			var $phone=phone.value;
+			var $email=email.value;
+			var $user_name=user_name.value;
+			var $gender=null;
+			if(m.checked){
+				$gender=1;
+			}else{
+				$gender=0;
+			}
+			//2.ajax的xhr4步---put方法，有请求主体
+			//1.创建xhr对象
+			var xhr=new XMLHttpRequest();
+			//4.绑定监听,接收请求
+			xhr.onreadystatechange=function(){
+				console.log(xhr.readyState);
+				if(xhr.readyState==4&&xhr.status==200){
+					console.log(222222222);
+					var result=xhr.responseText;
+					if(result=="1"){
+						alert("修改成功");
+						//如果修改成功，自动跳回之前页面，并重新加载数据
+						//使用BOM
+						location.href="http://localhost:8080/userlist.html";
+					}else{
+						alert("修改失败");
+					}
+				}
+			}
+			//2.打开连接，创建请求
+			xhr.open("put","/pro/v1/updateuser",true);
+			var formdata=`uname=${$uname}&upwd=${$upwd}&email=${$email}&phone=${$phone}&user_name=${$user_name}&gender=${$gender}&uid=${$uid}`;
+			console.log(formdata);
+			//3.发送请求
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			xhr.send(formdata);
+			}
+		</script>
+	</head>
+	<body onload="queryuser()">
+		<!-- uid的文本框变成只读，因为uid不允许修改-->
+		<input type="text" id="uid" readonly><br>
+		<input type="text" id="uname"><br>
+		<input type="text" id="upwd"><br>
+		<input type="text" id="email"><br>
+		<input type="text" id="phone"><br>
+		<input type="text" id="user_name"><br>
+		<!--<input type="text" id="gender"><br> -->
+		<!-- 使用单选按钮，解决性别选中的问题		 -->
+		<!-- 这里的name属性，作用是分组  -->
+		<input type="radio" id="m" name="gender"><label for="m">男</label>
+		<input type="radio" id="f" name="gender"><label for="f">女</label>
+		<input type="radio" id="un" name="gender"><label for="un">保密</label>
+		<button onclick="updateUser()">修改</button>
+	</body>
+</html>
