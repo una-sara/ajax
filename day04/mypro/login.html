@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script>
+			function login(){
+				//获取用户输入的数据
+				var $uname=uname.value;
+				var $upwd=upwd.value;
+				//非空验证
+				if($uname==""){
+					alert("用户名不能为空");
+					return;	
+				}
+				if($upwd==""){
+					alert("密码不能为空");
+					return;	
+				}
+				//ajax操作
+				//1.获取xhr对象
+				var xhr=new XMLHttpRequest();
+				//4.绑定监听，接受响应
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var result=xhr.responseText;
+						if(result=="1"){
+							alert("登陆成功");
+						}else{
+							alert("登陆失败");
+						}
+					}
+				}
+				//2.打开连接，创建请求
+				xhr.open("get","/pro/v1/login/"+$uname+"&"+$upwd,true);
+				//3.发送请求
+				xhr.send();
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<input type="text" id="uname">
+		</div>
+		<div>
+			<input type="text" id="upwd">
+		</div>
+		<button onclick="login()">登陆</button>
+	</body>
+</html>
